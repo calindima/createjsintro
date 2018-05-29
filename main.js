@@ -153,16 +153,6 @@ function bulletsVsEnemies(){
         });
     });
 }
-<<<<<<< HEAD
-
-function enemiesVsPlayer() {
-
-}
-
-function hitDetection(){
-    bulletsVsEnemies();
-    enemiesVsPlayer();
-=======
 function enemiesVsHero(){
     let imaginaryCircle={
         x: car.x + settings.carWidth / 2,
@@ -181,7 +171,6 @@ function enemiesVsHero(){
 function hitDetection(){
     bulletsVsEnemies();
     enemiesVsHero();
->>>>>>> 90104c1f84a11b2ef7b6227802c6a7a085292ad8
 
 }
 function tock(e){//refractoring
