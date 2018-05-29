@@ -86,7 +86,6 @@ function init(){
             settings.keys.down=false;
         }
         if(e.key === " "){
-            //shoot();
             let bullet = getEntity(4, car.x, car.y);
             bullets.push(bullet);
             // same as bullets.push(getEntity(4, car.x, car.y));
@@ -154,8 +153,24 @@ function bulletsVsEnemies(){
         });
     });
 }
+function enemiesVsHero(){
+    let imaginaryCircle={
+        x: car.x + settings.carWidth / 2,
+        y: car.y + 60/2,
+        r: 40
+    };
+    //console.log(imaginaryCircle)
+    enemies.forEach((e,i)=>{
+        if(distance(e,imaginaryCircle) < 60){
+            //console.log("an enemy hit the car");
+            stage.removeChild(e);
+            enemies.splice(i, 1);
+        }
+    });
+}
 function hitDetection(){
     bulletsVsEnemies();
+    enemiesVsHero();
 
 }
 function tock(e){//refractoring
