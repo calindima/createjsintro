@@ -8,7 +8,6 @@ The following is an (on purpose) very loose plan for the day, you decide where w
 
 ### TODO
 - Pausing the game
-- Shooting enemies
 - Highscores
     - `localStorage`?
 - Showing the score
@@ -23,3 +22,4 @@ The following is an (on purpose) very loose plan for the day, you decide where w
 - talk about native apps
 - remove bullets when they leave the screen
 - remove enemies when they leave the screen
+- Shooting enemies

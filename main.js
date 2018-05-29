@@ -1,4 +1,4 @@
-/* globals window,createjs */
+/* globals window,createjs,console */
 /* jshint esversion:6 */
 "use strict";
 window.addEventListener("load", init);
@@ -105,15 +105,18 @@ function getEntity(radius, x, y){
 function moveEnemies(){
     enemies.forEach((b, i)=>{
         b.y+=settings.enemySpeed;
-        if(b.y > 100){
+        if(b.y > settings.height){
             stage.removeChild(b);
             enemies.splice(i, 1);
         }
     });
 }
 function moveBullets(){
-    bullets.forEach(b=>{
+    bullets.forEach((b,i)=>{
         b.y-=settings.bulletSpeed;
+        if(b.y<0){
+            bullets.splice(i,1);
+        }
     });
 }
 
@@ -141,7 +144,13 @@ function moveHero(){
 function bulletsVsEnemies(){
     bullets.forEach((b,i)=>{
         enemies.forEach((e,j)=>{
-            console.log(distance(b, e))
+            if(distance(b, e) < 24){
+                stage.removeChild(b);
+                stage.removeChild(e);
+                bullets.splice(i, 1);
+                enemies.splice(j, 1);
+
+            }
         });
     });
 }
