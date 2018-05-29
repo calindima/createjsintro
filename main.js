@@ -9,6 +9,8 @@ const settings = {
     height: 400,
     carWidth: 100,
     bulletSpeed: 10,
+    enemySpeed: 5,
+    counter: 0,
     keys: {
         left: false,
         right: false,
@@ -16,7 +18,7 @@ const settings = {
         down: false
     }
 };
-let stage, car, bullets=[];
+let stage, car, bullets=[], enemies=[];
 function init(){
     stage = new createjs.Stage("stage");//the id of the canvas
     createjs.Ticker.framerate = 60;
@@ -84,20 +86,29 @@ function init(){
             settings.keys.down=false;
         }
         if(e.key === " "){
-            shoot();
+            //shoot();
+            let bullet = getEntity(4, car.x, car.y);
+            bullets.push(bullet);
+            // same as bullets.push(getEntity(4, car.x, car.y));
         }
-    })
+    });
 }
-function shoot(){
-    let bullet = new createjs.Shape();
-    bullet.graphics.beginFill("#fff").drawCircle(0,0,4);
-    bullet.x = car.x;
-    bullet.y=car.y;
-    bullets.push(bullet);
-    stage.addChild(bullet);
+function getEntity(radius, x, y){
+    let entity = new createjs.Shape();
+    entity.graphics.beginFill("#fff").drawCircle(0,0,radius);
+    entity.x = x;
+    entity.y = y;
+    stage.addChild(entity);
+    return entity;
 }
+
 //github.com/jofhatkea/
 
+function moveEnemies(){
+    enemies.forEach(b=>{
+        b.y+=settings.enemySpeed;
+    });
+}
 function moveBullets(){
     bullets.forEach(b=>{
         b.y-=settings.bulletSpeed;
@@ -123,13 +134,22 @@ function moveHero(){
         car.y+=settings.speed;
     }
 }
+
 function tock(e){//refractoring
+    //console.log("tock")
+    settings.counter++;
+    if(settings.counter % 100===0){
+        console.log("addEnemy");
+        let enemy = getEntity(20, Math.random()*settings.width, 0);
+        enemies.push(enemy);
+    }
+    //console.log(settings.counter)
     moveBullets();
+    moveEnemies();
     moveHero();
     stage.update(e);
 
 }
-
 
 
 //1 a game, 
