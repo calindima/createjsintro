@@ -8,8 +8,9 @@ The following is an (on purpose) very loose plan for the day, you decide where w
 
 ### TODO
 - Pausing the game
-- Adding enemies
 - Shooting enemies
+- remove bullets when they leave the screen
+- remove enemies when they leave the screen
 - Highscores
     - `localStorage`?
 - Showing the score
@@ -20,3 +21,5 @@ The following is an (on purpose) very loose plan for the day, you decide where w
 ### Completed
 - Stay within borders
 - jshint / eslint / jslint
+- Adding enemies
+- talk about native apps

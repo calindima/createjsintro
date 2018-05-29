@@ -102,11 +102,13 @@ function getEntity(radius, x, y){
     return entity;
 }
 
-//github.com/jofhatkea/
-
 function moveEnemies(){
-    enemies.forEach(b=>{
+    enemies.forEach((b, i)=>{
         b.y+=settings.enemySpeed;
+        if(b.y > 100){
+            stage.removeChild(b);
+            enemies.splice(i, 1);
+        }
     });
 }
 function moveBullets(){
@@ -114,6 +116,7 @@ function moveBullets(){
         b.y-=settings.bulletSpeed;
     });
 }
+
 function moveHero(){
     if(settings.keys.left){
         car.x-=settings.speed;
@@ -136,10 +139,9 @@ function moveHero(){
 }
 
 function tock(e){//refractoring
-    //console.log("tock")
     settings.counter++;
     if(settings.counter % 100===0){
-        console.log("addEnemy");
+        //console.log("addEnemy");
         let enemy = getEntity(20, Math.random()*settings.width, 0);
         enemies.push(enemy);
     }
@@ -151,7 +153,7 @@ function tock(e){//refractoring
 
 }
 
-
+//bullets.splice(0, 1)
 //1 a game, 
 
 //2 code journey
