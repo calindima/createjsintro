@@ -154,8 +154,14 @@ function bulletsVsEnemies(){
         });
     });
 }
+
+function enemiesVsPlayer() {
+
+}
+
 function hitDetection(){
     bulletsVsEnemies();
+    enemiesVsPlayer();
 
 }
 function tock(e){//refractoring
