@@ -138,17 +138,27 @@ function moveHero(){
     }
 }
 
+function bulletsVsEnemies(){
+    bullets.forEach((b,i)=>{
+        enemies.forEach((e,j)=>{
+            console.log(distance(b, e))
+        });
+    });
+}
+function hitDetection(){
+    bulletsVsEnemies();
+
+}
 function tock(e){//refractoring
     settings.counter++;
     if(settings.counter % 100===0){
-        //console.log("addEnemy");
         let enemy = getEntity(20, Math.random()*settings.width, 0);
         enemies.push(enemy);
     }
-    //console.log(settings.counter)
     moveBullets();
     moveEnemies();
     moveHero();
+    hitDetection();
     stage.update(e);
 
 }
@@ -159,3 +169,11 @@ function tock(e){//refractoring
 //2 code journey
 
 //3 what createjs can do
+
+
+function distance(o1, o2){
+    var difx = o2.x - o1.x;
+    var dify = o2.y - o1.y;
+    var t = Math.sqrt( (difx*difx) + (dify*dify) );
+    return t;
+}
